@@ -8,7 +8,10 @@
           .panel-heading
             h3.panel-title Anouncements
           .panel-body
-            .row.
-              test
+            .row
+              | {{#each rss.channel.item:i }}
+              .p.
+                {{ rss.channel.item[i].title }}
+              {{/each}}
   | {{>connection-status {}}}
 
