@@ -11,7 +11,7 @@
             .row
               | {{#each rss.channel.item:i }}
               .p.
-                {{ rss.channel.item[i].title }}
+                {{ rss.channel.item[0].title }}
               {{/each}}
   | {{>connection-status {}}}
 
