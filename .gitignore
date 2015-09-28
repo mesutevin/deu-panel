@@ -1,0 +1,11 @@
+*.pyc
+production
+public
+node_modules
+*.kate-swp
+vendor-*
+.idea
+app/assets/demos
+disabled/*
+**/orig--no-sync
+.kateproject.d

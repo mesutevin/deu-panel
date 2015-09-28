@@ -1,0 +1,7 @@
+include ../../templates/mixins.jade
+    
++partial('circular-progress')
+  .circular-progress
+    strong {{ .val }}
+      i {{ .val ? .unit : '' }}
+    

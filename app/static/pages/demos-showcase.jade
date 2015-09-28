@@ -1,0 +1,331 @@
+.panel.panel-primary.scada-drawing-area
+  .panel-heading
+    h2.panel-title Cici Meze
+    .row
+      .col-sm-3.
+        {{>scada-generate-layout {pin_name: 'scada'} }}
+      .col-sm-5.
+        {{>jq-checkbox {pin_name: 'lock-scada', label: 'Kilitli (Locked)'} }}
+  .panel-body        
+    .row(style="min-height: 500px; min-width: 100%").  
+      {{>seven-segment {pin_name: '286B61DE050000D8', wid: 10, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '280BFADD05000054', wid: 11, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '28CE9DDE050000E8', wid: 12, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '283984DD05000018', wid: 13, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '28FA9CDF0500009B', wid: 14, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '284A78DF05000059', wid: 15, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '285582DD0500003A', wid: 16, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '284880DF050000AF', wid: 17, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '287AF0DD05000046', wid: 18, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '287B43DE050000F8', wid: 19, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '28D026DF05000010', wid: 20, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '284980DF05000098', wid: 21, format: '##.### °C'} }}
+      {{>seven-segment {pin_name: '28EA46DE050000AC', wid: 22, format: '##.### °C'} }}
+      {{>status-led {pin_name: '28FFAEDE050000F8', wid: 23} }}
+  
+
+.panel.panel-primary.scada-drawing-area
+  .panel-heading
+    h2.panel-title Scada çizim alanı 
+  
+    .row
+      .col-sm-3.
+        {{>scada-generate-layout {pin_name: 'scada'} }}
+      .col-sm-5.
+        {{>jq-checkbox {pin_name: 'lock-scada', label: 'Kilitli (Locked)'} }}
+  
+  .panel-body        
+    .row(style="min-height: 500px; min-width: 100%").      
+      {{>push-button {pin_name: 'scada-test-pin-1', wid: 1} }}
+      {{>push-button {pin_name: 'test-pin', wid: 7} }}
+      {{>status-led {pin_name: 'scada-test-pin-1', wid: 2, src: 'light-bulb-icon-64'} }}
+      {{>status-led {pin_name: 'scada-test-pin-1', wid: 8, src: 'light-bulb-icon-64'} }}
+
+      {{>jq-checkbox {pin_name: 'scada-test-pin-2', wid: 3} }}
+      {{>status-led {pin_name: 'scada-test-pin-2', wid: 4, src: 'light-bulb-icon-64'} }}
+      
+      {{>line-graph {pin_name: 'scada-test-pin-3', wid: 5} }}
+      
+      <div style="max-width: 300px">
+        {{>slider {pin_name: 'scada-test-pin-3', wid: 6} }}
+      </div>
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Notification Boxes
+  .panel-body
+    .row
+      .col-lg-3.col-md-6.
+        {{>b-notification-box {pin_name: 'notification-test', icon: 'gears', label: 'Testing'} }}
+      .col-lg-3.col-md-6.
+        {{>b-notification-box {pin_name: 'online-users', opt: 'green', icon: 'user', label: 'Online'} }}
+      .col-lg-3.col-md-6.
+        {{>b-notification-box {pin_name: 'notification-test', opt: 'red', label: 'Alert', icon: 'warning'} }}
+      .col-lg-3.col-md-6.
+        {{>b-notification-box {pin_name: 'notification-test', opt: 'yellow'} }}
+    .row.
+      {{>slider {pin_name: 'notification-test'} }}
+      
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Bağlı kullanıcı sayısı
+  .panel-body
+    .row.
+      {{>online-users {pin_name: 'online-users'} }}
+      {{!>slider {pin_name: 'online-users'} }}
+
+  
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Grafik 
+  .panel-body
+    .row.
+      {{>line-graph {pin_name: 'line-graph-1'} }}
+      {{>slider {pin_name: 'line-graph-1'} }}
+    .row.
+      {{>line-graph {pin_name: 'line-graph-2'} }}
+      {{>slider {pin_name: 'line-graph-2'} }}
+
+      
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Spinbox
+  .panel-body
+    .row
+      .col-sm-4.
+        {{>spinbox {pin_name: "spinbox-test", val: 35} }}
+        {{>slider {pin_name: "spinbox-test"} }}
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Toolbars
+  .panel-body
+    .row
+      .col-sm-offset-4.col-sm-4
+        div.
+          {{>toolbar {buttons: [
+            '#link1 fa-car', 
+            '#link2 fa-heart', 
+            '#link3', 
+            '#link4 fa-car', 
+            '#link5 fa-plane' 
+            ], icon: 'fa-cog'} }}        
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Göstergeler
+  .panel-body
+    .row
+      .col-sm-3.
+        {{>gauge {pin_name: 'gauge-slider', type: 'ping'} }}
+      .col-sm-3.
+        {{>gauge {pin_name: 'gauge-slider', type: 'upload'} }}
+      .col-sm-3.
+        {{>gauge {pin_name: 'gauge-slider', type: 'download'} }}
+      .col-sm-3.
+        {{>gauge {pin_name: 'gauge-slider', type: 'speed'} }}     
+    .row.
+      {{>slider {pin_name:"gauge-slider", val: 45} }}
+    .row
+      .col-sm-4.
+        {{>justgage {pin_name:"gauge-slider", val: 45} }}
+      .col-sm-4.
+        {{>justgage {pin_name:"gauge-slider", val: 45} }}
+      .col-sm-4.
+        {{>justgage {pin_name:"gauge-slider", val: 45} }}
+      
+
+    
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Giriş Formu
+  .panel-body
+    :md
+      Test şifreleri: 
+      
+        * cca12345
+        * me12345
+        * tk12345
+    div
+      div Login input: {{>login-input {} }}
+      div Login status {{>login-info {} }}
+    
+    
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Nümerik Klavye
+  .panel-body
+    .row
+      .col-sm-4.
+        {{>numeric-keyboard {} }}
+      .col-sm-4.
+        {{>numeric-keyboard {} }}
+      .col-sm-4.
+        {{>numeric-keyboard {} }}
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Tablo
+  .panel-body.
+    {{>table {pin_name: 'test-table'} }}
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title SevenSegment
+  .panel-body
+    .row.
+        {{>seven-segment {pin_name: 'gauge-slider', val: 1.6,  format: '##'}}}
+        {{>seven-segment {pin_name: 'gauge-slider', val: 123.45, format: '#######.##', type: 'multimeter'}}}
+        {{>seven-segment {pin_name: 'gauge-slider',  format: '####.#'}}}
+        {{>seven-segment {pin_name: 'gauge-slider',  format: '##.###'}}}
+        {{>slider {pin_name: 'gauge-slider',  val: 45} }}
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Circular-Progress
+  .panel-body
+    .row
+      .col-sm-4.
+        {{>circular-progress {pin_name: 'progress-slider'} }}
+      .col-sm-4.
+        {{>circular-progress {pin_name: 'progress-slider',color: 'yellowgreen green', format: '### °C'} }}
+      .col-sm-4.  
+        {{>circular-progress {pin_name: 'progress-slider', color: 'white orange', format: '### A'} }}
+    .row.
+      {{>slider {pin_name:"progress-slider", val: 45} }}
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Sensörler
+  .panel-body
+    .row. 
+      {{>thermometer {pin_name: 'therm-var'} }}
+      {{>slider {pin_name:"therm-var"} }}
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Buttons
+  .panel-body
+    .row
+      .col-sm-2.
+        {{>switch-button-basic {pin_name: 'test-pin', label: 'Test pin'} }}
+      .col-sm-2.
+        {{>jq-checkbox {pin_name: 'test-pin', label: 'Test pin'} }}
+      .col-sm-2.
+        {{>toggle-switch {pin_name: 'test-pin'} }}
+      .col-sm-2.
+        {{>switch-button {pin_name: 'test-pin', label: 'TEST PIN'} }}
+      .col-sm-2.
+        {{>push-button {pin_name: 'test-pin', label: 'TEST PIN'} }}
+      .col-md-2.
+        {{>status-led {pin_name: 'test-pin', src: 'light-bulb-icon-64'} }}
+      .col-sm-2.
+        {{>status-led {pin_name: 'test-pin'} }}
+    .row
+      .col-lg-3.
+        {{>b-circle-button {pin_name: 'circle-test'} }}
+      .col-lg-3.
+        {{>b-circle-button {pin_name: 'circle-test', icon: 'shield'} }}
+      .col-lg-3.
+        {{>b-circle-button {pin_name: 'circle-test', icon: 'warning'} }}
+      .col-lg-3.
+        {{>b-circle-button {pin_name: 'circle-test', icon: 'signal'} }}
+
+    .row
+      .col-sm-offset-4.col-sm-4.
+        {{>arrow-keys {} }}
+    
+    
+        
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Sliders
+  .panel-body
+    .row
+      .col-md-12.
+        {{>slider {pin_name:"slider-2", val: 45} }}
+
+    .row
+      .col-md-6.
+        {{>slider {pin_name:"slider-1", val: 25} }}
+        
+      .col-md-6.
+        {{>analog-display {pin_name: 'slider-1'} }}
+        
+    .row
+      .col-md-3.
+        {{>b-progress-bar {pin_name: 'slider-1', val: 55} }}
+      .col-md-3.
+        {{>b-vertical-progress-bar {pin_name: 'slider-1', val: 55} }}
+      .col-md-3.
+        {{>b-vertical-progress-bar {pin_name: 'slider-1', val: 55} }}
+        
+        
+        
+
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Grafikler
+  .panel-body
+    .row
+      h3 Stacked progress 
+      div. 
+        {{>slider {pin_name:"slider-1", val: 25} }}
+        {{>slider {pin_name:"slider-2", val: 25} }}
+        {{>slider {pin_name:"slider-3", val: 25} }}
+        {{>slider {pin_name:"slider-4", val: 25} }}
+        {{>slider {pin_name:"slider-5", val: 25} }}
+
+        {{>b-stacked-progress 
+          {pin_names: [ 
+              ['slider-1', 'red'], 
+              ['slider-2', ''], 
+              ['slider-3', 'green'],
+              ['slider-4', 'blue'],
+              ['slider-5', 'orange']
+            ]
+          }
+        }}
+
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Ofisteki Termometreler
+  .panel-body
+    .row
+      .col-sm-6.
+        {{>thermometer {pin_name: 'therm-1'} }}
+        {{>seven-segment {pin_name: 'therm-1', type: 'speed', format: '###.###'}}}
+      .col-sm-6.
+        {{>thermometer {pin_name: 'therm-2'} }}
+        {{>seven-segment {pin_name: 'therm-2', type: 'speed', format: '###.##'}}}
+      
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Kullanıcı girişleri
+  .panel-body
+    .row
+      .col-md-6
+        h2 Textbox
+        div.
+          {{>textbox {pin_name: 'test-pin', val: 'test value'} }}
+
+
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Kullanıcı girişleri
+  .panel-body
+    .row
+      h3  Delphi simulation 
+      fieldset(data-role='controlgroup', data-type='horizontal')
+        | {{>switch-button {pin_name: 'forward-limit', label: 'F-limit'} }}
+        | {{>switch-button {pin_name: 'backwards-limit', label: 'B-limit'} }}
+      fieldset(data-role='controlgroup', data-type='horizontal')
+        | {{>push-button {pin_name: 'move-forward', label: 'Forward'} }}
+        | {{>push-button {pin_name: 'move-backwards', label: 'Backwards'} }}
+        | {{>push-button {pin_name: 'forward-limit', label: 'F-limit'} }}
+        | {{>push-button {pin_name: 'backwards-limit', label: 'B-limit'} }}
+      fieldset(data-role='controlgroup', data-type='horizontal')
+        | {{>status-led {pin_name: 'piston.enab'} }}
+        | {{>status-led {pin_name: 'piston.dir'} }}
