@@ -45,6 +45,7 @@ app.on 'complete', !->
     RactivePartial! .init-for-document-ready!
 
     RactivePartial! .init-for-dynamic-pos widget-positions
+
     # debug
     /*
     test.send IoMessage:
@@ -62,14 +63,8 @@ app.on 'complete', !->
       console.log 'Rss feed is detected problem...'
       return false
     app.set 'rss', feeds
-    console.log feeds
-    for i from 0 til feeds.entries.length
-      entry = feeds.entries[i]
-      #console.log feeds.entries[i]
-
+    #console.log feeds
   , 10
-
-
 
   /*
   console.log "Testing sending data to table from app.ls"

@@ -8,8 +8,10 @@
           .panel-heading
             h3.panel-title Anouncements
           .panel-body
-            .row.
-              {{#each rss.entries:i}}
-              <p><strong> {{ rss.entries[i].title }} </strong></p>
-              {{/each}}
+            .row
+              div.
+                {{>owl-carousel {} }}
+                {{#each rss.entries:i}}
+                <p><strong> {{ rss.entries[i].title }} </strong></p>
+                {{/each}}
   | {{>connection-status {}}}
