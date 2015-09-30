@@ -1,0 +1,28 @@
+
+.huge {
+    font-size: 40px;
+}
+.rss-title {
+    font-size: 25px;
+}
+.panel-green a {
+    color: #5cb85c;
+}
+
+.panel-green a:hover {
+    color: #3d8b3d;
+}
+.panel-red a {
+    color: #d9534f;
+}
+
+.panel-red a:hover {
+    color: #d9534f;
+}
+.panel-yellow a {
+    color: #f0ad4e;
+}
+
+.panel-yellow a:hover {
+    color: #df8a13;
+}

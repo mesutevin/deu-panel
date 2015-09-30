@@ -1,0 +1,18 @@
+include ../../templates/mixins.jade
+    
++partial('rss-notification-box')
+  .rss-notification-box
+    div(class="panel panel-{{ .opt ? .opt : 'primary' }}")
+      .panel-heading
+        .row
+          .col-xs-9.huge
+            | {{ rss.entries[2].title }}
+          .col-xs-3
+            i(class="fa fa-{{ .icon ? icon : 'comment' }} fa-4x pull-right")
+        
+      div
+        .span.pull-left.rss-title.
+          {{{ rss.entries[2].content }}}
+        .clearfix
+              
+    

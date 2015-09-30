@@ -4,14 +4,14 @@
   .content
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
-        .panel.panel-primary
-          .panel-heading
-            h3.panel-title Anouncements
-          .panel-body
-            .row
-              div.
-                {{>owl-carousel {} }}
-                {{#each rss.entries:i}}
-                <p><strong> {{ rss.entries[i].title }} </strong></p>
-                {{/each}}
+        .row
+          .col-md-offset-1.col-md-10.col-md-offset-1.
+            {{> rss-notification-box {opt: 'red', icon: 'warning'} }}                
+            
+            {{> rss-notification-box {} }}                
+            
+            
+            {{#each rss.entries:i}}
+            <p><strong> {{ rss.entries[i].title }} </strong></p>
+            {{/each}}
   | {{>connection-status {}}}
