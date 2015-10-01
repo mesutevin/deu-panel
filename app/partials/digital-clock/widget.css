@@ -1,12 +1,12 @@
 
 .digital-container {
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .digital-clock__ {
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: 30px;
     border: 1px solid #333;
@@ -21,7 +21,7 @@
 }
 
 ul {
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: 0px;
     list-style: none;
