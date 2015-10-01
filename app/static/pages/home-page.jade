@@ -1,6 +1,6 @@
 #home-page(data-role='page', data-theme='b')
   #header1
-      
+
   .content
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
@@ -18,6 +18,12 @@
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
           .col-md-offset-1.col-md-10.col-md-offset-1.
+            {{#each rss.entries:i}}
+            <p><strong> {{ rss.entries[i].title }} </strong></p>
+            {{/each}}
+
+
+            {{> weather{} }}
             
             {{#rss.entries:i}}
             {{#if i<2 }}
@@ -31,6 +37,7 @@
         .row
           .col-md-offset-1.col-md-8.
             {{> digital-clock {} }}
+
   | {{>connection-status {}}}
   
   //
