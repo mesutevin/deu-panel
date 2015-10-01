@@ -5,16 +5,39 @@
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
+          .col-md-offset-1.col-md-10.col-md-offset-1
+            .col-lg-3.col-md-6.
+              {{>b-notification-box {icon: 'gears', label: 'Testing'} }}
+            .col-lg-3.col-md-6.
+              {{>b-notification-box {opt: 'green', icon: 'user', label: 'Online'} }}
+            .col-lg-3.col-md-6.
+              {{>b-notification-box {opt: 'red', label: 'Alert', icon: 'warning'} }}
+            .col-lg-3.col-md-6.
+              {{>b-notification-box {opt: 'yellow'} }}
+    .row
+      .col-md-offset-1.col-md-10.col-md-offset-1
+        .row
           .col-md-offset-1.col-md-10.col-md-offset-1.
             
             {{#rss.entries:i}}
-              <div> {{> rss-notification-box {} }} </div>
+            {{#if i<2 }}
+            {{#if rss.entries[i].title[0] == '!'}}
+              <div> {{> rss-notification-box {opt: 'red'} }} </div>
+            {{else}}
+            <div> {{> rss-notification-box {icon: 'rss'} }} </div>
+            {{/if}}
+            {{/if}}
             {{/rss.entries}}
-            
-            
-            {{#each rss.entries:i}}
-            <p><strong> {{ rss.entries[i].title }} </strong></p>
-            {{/each}}
-            
+        .row
+          .col-md-offset-1.col-md-8.
             {{> digital-clock {} }}
   | {{>connection-status {}}}
+  
+  //
+    
+    {{#each rss.entries:i}}
+    {{#if i<4 }}
+    {{/if}}
+    <p><strong> {{ rss.entries[i].title }} </strong></p>
+    {{/each}}
+    
