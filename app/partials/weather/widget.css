@@ -1,0 +1,8 @@
+.weather-icon {
+  width: 70%;
+  height: 100%;
+}
+.weather-temperature {
+  font-size: 60px;
+  text-align: center;
+}
