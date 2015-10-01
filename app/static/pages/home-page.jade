@@ -6,12 +6,15 @@
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
           .col-md-offset-1.col-md-10.col-md-offset-1.
-            {{> rss-notification-box {opt: 'red', icon: 'warning'} }}                
             
-            {{> rss-notification-box {} }}                
+            {{#rss.entries:i}}
+              <div> {{> rss-notification-box {} }} </div>
+            {{/rss.entries}}
             
             
             {{#each rss.entries:i}}
             <p><strong> {{ rss.entries[i].title }} </strong></p>
             {{/each}}
+            
+            {{> digital-clock {} }}
   | {{>connection-status {}}}
