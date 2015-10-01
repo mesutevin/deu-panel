@@ -6,13 +6,13 @@ include ../../templates/mixins.jade
       .panel-heading
         .row
           .col-xs-9.huge
-            | {{ rss.entries[2].title }}
+            | {{ rss.entries[i].title }}
           .col-xs-3
             i(class="fa fa-{{ .icon ? icon : 'comment' }} fa-4x pull-right")
         
       div
         .span.pull-left.rss-title.
-          {{{ rss.entries[2].content }}}
+          {{{ rss.entries[i].content }}}
         .clearfix
               
     

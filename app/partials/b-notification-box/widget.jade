@@ -10,11 +10,12 @@ include ../../templates/mixins.jade
           .col-xs-9.text-right
             .huge {{ .val ? .val : 26 }}
             div {{ .label ? .label : 'New Comments!' }}
+      {{#if .link }}
       a(href='#')
         .panel-footer
           span.pull-left View Details
           span.pull-right
             i.fa.fa-arrow-circle-right
           .clearfix
-            
+      {{/if}}
     

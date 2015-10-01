@@ -65,6 +65,26 @@ app.on 'complete', !->
     app.set 'rss', feeds
     #console.log feeds
   , 10
+  
+  set-interval ->
+    $ .jGFeed 'http://www.feedforall.com/sample-feed.xml', (feeds) ->
+      if not feeds
+        console.log 'Rss feed is detected problem...'
+        return false
+      app.set 'rss', feeds
+      #console.log feeds
+    , 10
+  , 4000
+  set-interval ->
+    $ .jGFeed 'http://eee.deu.edu.tr/moodle/rss/file.php/52/db39988d0b67063917a1d125c8d07278/mod_forum/4/rss.xml', (feeds) ->
+      if not feeds
+        console.log 'Rss feed is detected problem...'
+        return false
+      app.set 'rss', feeds
+      #console.log feeds
+    , 10
+  , 10000
+
 
   /*
   console.log "Testing sending data to table from app.ls"
