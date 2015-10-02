@@ -1,4 +1,4 @@
-.PHONY: all production clean
+.PHONY: all production clean run-server
 
 PRODUCTION_FOLDER := production
 

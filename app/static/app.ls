@@ -65,7 +65,7 @@ app.on 'complete', !->
     app.set 'rss', feeds
     #console.log feeds
   , 10
-  
+
   set-interval ->
     $ .jGFeed 'http://www.feedforall.com/sample-feed.xml', (feeds) ->
       if not feeds
@@ -84,6 +84,11 @@ app.on 'complete', !->
       #console.log feeds
     , 10
   , 10000
+
+  app.set 'testRss', do
+    entries:
+      * title: 'test 1'
+      * title: '! test 2'
 
 
   /*
@@ -210,6 +215,7 @@ RactivePartial! .register-for-document-ready ->
 
   # lock scada externally
   #SwitchActor \lock-scada .gui-event on
+
 
 
 # TODO: remove this

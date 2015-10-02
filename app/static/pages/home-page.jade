@@ -17,17 +17,27 @@
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
-          .col-md-offset-1.col-md-10.col-md-offset-1.
+          .col-md-offset-1.col-md-10.col-md-offset-1
             
-            {{#rss.entries:i}}
-            {{#if i<2 }}
-            {{#if rss.entries[i].title[0] == '!'}}
-              <div> {{> rss-notification-box {opt: 'red'} }} </div>
-            {{else}}
-            <div> {{> rss-notification-box {icon: 'rss'} }} </div>
-            {{/if}}
-            {{/if}}
-            {{/rss.entries}}
+            | {{#testRss.entries:i}}
+            | {{#if i<2 }}
+            .rss-notification-box
+              div(class="panel panel-{{ .title.match(/^!/) ? 'red' : 'primary' }}")
+                .panel-heading
+                  .row
+                    .col-xs-9.huge
+                      | {{ .title }}
+                    .col-xs-3
+                      i(class="fa fa-{{ .icon ? icon : 'comment' }} fa-4x pull-right")
+                  
+                div
+                  .span.pull-left.rss-title
+                    | <!--
+                    |  {{{ rss.entries[i].content }}} -->
+                    |  <p> i: {{ i }} </p>
+                  .clearfix
+            | {{/if}}
+            | {{/rss.entries}}
         .row
           .col-md-offset-1.col-md-8.
             {{> digital-clock {} }}
