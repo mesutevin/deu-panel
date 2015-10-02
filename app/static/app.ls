@@ -21,8 +21,11 @@ obj = { a: 1 }
 app = new Ractive do
   el: 'container'
   template: '#app'
-  data: do
-    rss: obj
+  data:
+    rss:
+      a: 1
+    get-important-count: (rss) ->
+      [i for i in rss.entries when i.title.match /^!/].length
 
 RactiveApp!set app
 
@@ -94,7 +97,7 @@ app.on 'complete', !->
     app.set 'testRss', do
       entries:
         * title: '!test 1'
-        * title: 'test 2'
+        * title: '!test 2'
 
   set-timeout change-rss, 3000
 
