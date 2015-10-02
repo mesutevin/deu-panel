@@ -90,6 +90,14 @@ app.on 'complete', !->
       * title: 'test 1'
       * title: '! test 2'
 
+  change-rss = ->
+    app.set 'testRss', do
+      entries:
+        * title: '!test 1'
+        * title: 'test 2'
+
+  set-timeout change-rss, 3000
+
 
   /*
   console.log "Testing sending data to table from app.ls"
