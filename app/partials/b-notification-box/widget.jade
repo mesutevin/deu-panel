@@ -8,14 +8,14 @@ include ../../templates/mixins.jade
           .col-xs-3
             i(class="fa fa-{{ .icon ? icon : 'comment' }} fa-5x")
           .col-xs-9.text-right
-            .huge {{ .val ? .val : 26 }}
+            .huge {{ .val ? .val : 0 }}{{ .val2 ? ' / ' + val2 : ''}}
             div {{ .label ? .label : 'New Comments!' }}
-      {{#if .link }}
+      | {{#if .link }}
       a(href='#')
         .panel-footer
           span.pull-left View Details
           span.pull-right
             i.fa.fa-arrow-circle-right
           .clearfix
-      {{/if}}
+      | {{/if}}
     
