@@ -14,9 +14,25 @@ require! {
 require '../partials/ractive-partials'
 
 # Set Ractive.DEBUG to false when minified:
-Ractive.DEBUG = /unminified/.test !-> /*unminified*/
+#Ractive.DEBUG = /unminified/.test !-> /*unminified*/
 
 obj = { a: 1 }
+
+get-sender = (content) ->
+  a = content.match /^by [^\.]*/
+  a.0.replace 'by', ''
+
+get-announcement = (content) ->
+  content.replace /^by [^\.]*\./, ''
+
+get-important-count =  (rss) ->
+  [i for i in rss.entries when i.title.match /^!/].length
+
+get-entries-length = (rss) ->
+  [i for i in rss.entries].length
+
+is-new = (pub-date, timeout) ->
+  (new Date pub-date .get-time!) + (timeout * 1000) > (new Date!).get-time!
 
 app = new Ractive do
   el: 'container'
@@ -24,8 +40,13 @@ app = new Ractive do
   data:
     rss:
       a: 1
-    get-important-count: (rss) ->
-      [i for i in rss.entries when i.title.match /^!/].length
+    get-important-count: get-important-count
+    get-sender: get-sender
+    get-announcement: get-announcement
+    get-entries-length: get-entries-length
+    is-new: is-new
+    curr_index: 0
+    entries_len: 0
 
 RactiveApp!set app
 
@@ -61,45 +82,29 @@ app.on 'complete', !->
 
   console.log "ractive app completed..."
 
-  $ .jGFeed 'http://eee.deu.edu.tr/moodle/rss/file.php/52/db39988d0b67063917a1d125c8d07278/mod_forum/4/rss.xml', (feeds) ->
-    if not feeds
-      console.log 'Rss feed is detected problem...'
-      return false
-    app.set 'rss', feeds
-    #console.log feeds
-  , 10
+  change-index = ->
+    curr_index = app.get \curr_index
+    total = app.get \entries_len
 
-  set-interval ->
-    $ .jGFeed 'http://www.feedforall.com/sample-feed.xml', (feeds) ->
-      if not feeds
-        console.log 'Rss feed is detected problem...'
-        return false
-      app.set 'rss', feeds
-      #console.log feeds
-    , 10
-  , 4000
-  set-interval ->
+    curr_index += 1
+    curr_index %= total
+    app.set \curr_index, curr_index
+    set-timeout change-index, 5000
+
+  first-load = true
+  get-rss = ->
     $ .jGFeed 'http://eee.deu.edu.tr/moodle/rss/file.php/52/db39988d0b67063917a1d125c8d07278/mod_forum/4/rss.xml', (feeds) ->
       if not feeds
         console.log 'Rss feed is detected problem...'
         return false
       app.set 'rss', feeds
-      #console.log feeds
-    , 10
-  , 10000
+      app.set 'entries_len', feeds.entries.length
+      if first-load
+        set-timeout change-index, 5000
+        first-load := false
+    set-timeout get-rss, 12000
+  get-rss!
 
-  app.set 'testRss', do
-    entries:
-      * title: 'test 1'
-      * title: '! test 2'
-
-  change-rss = ->
-    app.set 'testRss', do
-      entries:
-        * title: '!test 1'
-        * title: '!test 2'
-
-  set-timeout change-rss, 3000
 
 
   /*

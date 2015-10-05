@@ -6,39 +6,39 @@
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
           .col-md-offset-1.col-md-10.col-md-offset-1
-            .col-lg-3.col-md-6.
-              {{>b-notification-box {opt: 'red', icon: 'warning', label: 'Important Messages', val: getImportantCount(testRss)} }}
-            .col-lg-3.col-md-6.
-              {{>b-notification-box {opt: 'green', icon: 'user', label: 'Online'} }}
-            .col-lg-3.col-md-6.
-              {{>b-notification-box {opt: 'red', label: 'Alert', icon: 'warning'} }}
-            .col-lg-3.col-md-6.
-              {{>b-notification-box {opt: 'yellow'} }}
+            .col-sm-4.
+              {{>b-notification-box {opt: 'red', icon: 'warning', label: 'Important Messages', val: getImportantCount(rss)} }}
+            .col-sm-4.
+              {{>b-notification-box {opt: 'green', label: 'Announcement', val: curr_index + 1, val2: getEntriesLength(rss)} }}
+            .col-sm-4.
+              {{>b-notification-box {opt: 'yellow', icon: 'bell-o', val: isNew(rss.entries[curr_index].publishedDate, 3600), label: 'New Announcement'} }}
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
           .col-md-offset-1.col-md-10.col-md-offset-1
-            div(style='height:100; width: 300px; background: red')
-              | {{}}
-            | {{#testRss.entries:i}}
-            | {{#if i<2 }}
+            | {{#with {entry: rss.entries[curr_index]} }}
             .rss-notification-box
-              div(class="panel panel-{{ .title.match(/^!/) ? 'red' : 'primary' }}")
+              div(class="panel panel-{{ entry.title.match(/^!/) ? 'red' : 'primary' }}")
                 .panel-heading
                   .row
                     .col-xs-9.huge
-                      | {{ .title }}
+                      | {{ entry.title }}
+                    
                     .col-xs-3
                       i(class="fa fa-{{ .icon ? icon : 'comment' }} fa-4x pull-right")
+                      | {{#if isNew(entry.publishedDate, 3600) }}
+                      i(class="fa fa-bell-o fa-4x pull-right")
+                      | {{/if}}
+                    .row.pull-right
+                      .col-xs-offset-6.col-xs-6.huge.
+                        {{ getSender(entry.content) }}
+                                    
                   
                 div
-                  .span.pull-left.rss-title
-                    | <!--
-                    |  {{{ rss.entries[i].content }}} -->
-                    |  <p> i: {{ i }} </p>
+                  .span.pull-left.rss-title(style= 'min-height: 13em')
+                    |  {{{ getAnnouncement(entry.content) }}} 
                   .clearfix
-            | {{/if}}
-            | {{/rss.entries}}
+            | {{/with}}
         .row
           .col-md-offset-1.col-md-8.
             {{> digital-clock {} }}
@@ -47,12 +47,3 @@
             
 
   | {{>connection-status {}}}
-  
-  //
-    
-    {{#each rss.entries:i}}
-    {{#if i<4 }}
-    {{/if}}
-    <p><strong> {{ rss.entries[i].title }} </strong></p>
-    {{/each}}
-    
