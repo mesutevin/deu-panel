@@ -5,7 +5,7 @@ short-id = require \shortid
 #msgpack = require 'msgpack-js'
 require! {
   './modules/aktos-dcs': {
-    envelp, 
+    envelp,
     get-msg-body,
   }
 }
@@ -92,19 +92,19 @@ cleanup-msg-history = ->
   #console.log "msg history after: ", message-history.length
 
 set-interval cleanup-msg-history, 10000_ms
-
-mjpeg-camera = require \mjpeg-camera 
+/*
+mjpeg-camera = require \mjpeg-camera
 camera = new mjpeg-camera do
   name: 'backdoor'
   url: 'http://localhost:8080/?action=stream'
-    
-camera.on \data, (frame) -> 
+
+camera.on \data, (frame) ->
   io.emit \frame, frame.data.to-string \base64
 
 camera.start!
+*/
 
-
-user-db = 
+user-db =
   * id: 1
     username: 'ceremcem'
     name: 'Cerem Cem ASLAN'
@@ -118,43 +118,43 @@ user-db =
     name: 'Tuğrul KUKUL'
     secret: 'tk12345'
 
-handle-auth-message = (msg, socket) -> 
+handle-auth-message = (msg, socket) ->
   msg-body = get-msg-body msg
   console.log "server got control message: ", get-msg-body msg
-  
+
   client-secret = msg-body.client_secret
-  
+
   client-data = [user for user in user-db when client-secret == user.secret]
-  
-  client-data = if client-data.0 then 
+
+  client-data = if client-data.0 then
     client-data.0
   else
     name: "Misafir"
-      
+
   console.log 'client data is: ', client-data
-    
-  token-msg = AuthMessage: 
+
+  token-msg = AuthMessage:
     token: 'this token is signed by server for this specific client'
     client_data: client-data
-    
+
   console.log "sending token-msg: ", token-msg
-    
+
   token-msg = envelp token-msg, 0
-  token-msg.sender ++= [server-id] 
-  socket.emit 'aktos-message', token-msg 
-  
-  
+  token-msg.sender ++= [server-id]
+  socket.emit 'aktos-message', token-msg
+
+
 connected-user-count = 0
 
-handle_UpdateIoMessage = (msg, socket) ->   
-  conn-msg = IoMessage: 
+handle_UpdateIoMessage = (msg, socket) ->
+  conn-msg = IoMessage:
     pin_name: 'online-users'
     val: connected-user-count
   conn-msg = envelp conn-msg, 1230
-  conn-msg.sender ++= [server-id] 
-  io.sockets.emit 'aktos-message', conn-msg 
+  conn-msg.sender ++= [server-id]
+  io.sockets.emit 'aktos-message', conn-msg
   console.log "Notifying total user count: #{connected-user-count}", conn-msg
-  
+
 
 # Forward socket.io messages to and from zeromq messages
 io.on 'connection', (socket) !->
@@ -165,8 +165,8 @@ io.on 'connection', (socket) !->
   # track online users
   connected-user-count := connected-user-count + 1
   console.log "Total online user count: #{connected-user-count}"
-  
-  socket.on \disconnect, -> 
+
+  socket.on \disconnect, ->
     connected-user-count := connected-user-count - 1
 
     console.log "Total online user count: #{connected-user-count}"
@@ -175,14 +175,14 @@ io.on 'connection', (socket) !->
 
   socket.on "aktos-message", (msg) !->
     #console.log "aktos-message from browser: ", msg
-    
+
     if \AuthMessage of msg.payload
       handle-auth-message msg, socket
-      
+
     else
-      if \UpdateIoMessage of msg.payload 
+      if \UpdateIoMessage of msg.payload
         handle_UpdateIoMessage msg, socket
-    
+
       # append server-id to message.sender list
       msg.sender ++= [server-id]
 
