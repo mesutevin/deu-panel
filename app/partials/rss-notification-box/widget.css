@@ -1,9 +1,12 @@
 
 .huge {
-    font-size: 40px;
+    font-size: 60px;
 }
 .rss-title {
     font-size: 25px;
+}
+.rss-content {
+    font-size: 35px;
 }
 .panel-green a {
     color: #5cb85c;
