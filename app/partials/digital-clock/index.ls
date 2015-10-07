@@ -10,8 +10,8 @@ RactivePartial! .register ->
     elem = $ this
     actor = IoActor elem
 
-    monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
-    dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    monthNames = [ "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" ]
+    dayNames= ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"]
     new-date = new Date!
     new-date.set-date new-date.get-date!
     $ \#digital-date .html dayNames[new-date.get-day!] + ' ' + new-date.get-date! + ' ' + monthNames[new-date.getMonth!] + ' ' + new-date.get-full-year!
