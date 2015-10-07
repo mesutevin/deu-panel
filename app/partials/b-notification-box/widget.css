@@ -2,7 +2,9 @@
 .huge {
     font-size: 40px;
 }
-
+.label__ {
+    font-size: 25px;
+}
 .panel-green {
     border-color: #5cb85c;
 }
