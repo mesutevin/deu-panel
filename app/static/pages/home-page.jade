@@ -5,6 +5,12 @@
     .row
       .col-md-offset-1.col-md-10.col-md-offset-1
         .row
+          .col-md-offset-1.col-md-8.
+            {{> digital-clock {} }}
+          .col-md-2.
+            {{> weather{} }}
+        
+        .row
           .col-md-offset-1.col-md-10.col-md-offset-1
             .col-sm-4.
               {{>b-notification-box {opt: 'red', icon: 'warning', label: 'Important Messages', val: getImportantCount(rss)} }}
@@ -35,15 +41,11 @@
                                     
                   
                 div
-                  .span.pull-left.rss-title(style= 'min-height: 13em')
+                  .span.pull-left.rss-content(style= 'min-height: 13em')
                     |  {{{ getAnnouncement(entry.content) }}} 
                   .clearfix
             | {{/with}}
-        .row
-          .col-md-offset-1.col-md-8.
-            {{> digital-clock {} }}
-          .col-md-2.
-            {{> weather{} }}
+        
             
 
   | {{>connection-status {}}}

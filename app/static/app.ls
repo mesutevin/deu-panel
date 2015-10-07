@@ -155,7 +155,8 @@ app.on 'complete', !->
   set-timeout up2, 2000
 
   */
-
+/*
+------------------------------------------------------------------------
   drag-move-listener = (event) ->
     target = event.target
     x = ((parse-float target.get-attribute \data-x) or 0) + event.dx
@@ -231,7 +232,8 @@ RactivePartial! .register-for-document-ready ->
 
   # lock scada externally
   #SwitchActor \lock-scada .gui-event on
-
+-------------------------------------------------------------------------------
+*/
 
 
 # TODO: remove this
