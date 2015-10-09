@@ -1,31 +1,28 @@
 #home-page(data-role='page', data-theme='b')
-  #header1
+  .col-sm-9
+    #header1
+  .col-sm-3
+    | {{> digital-clock {pin_name:'reload-page'} }}
 
   .content
-    .row
-      .col-md-offset-1.col-md-10.col-md-offset-1
-        //-
+    //-
+      .row
+        .col-md-offset-1.col-md-10.col-md-offset-1
           .row
-            .col-md-offset-1.col-md-8
-              | {{!> digital-clock {} }}
-            .col-md-2
-              | {{!> weather{} }}
-        
+            .col-md-offset-1.col-md-10.col-md-offset-1
+              .col-sm-4.
+                {{>b-notification-box {pin_name: 'bbb', opt: 'red', icon: 'warning', label: 'ÖNEMLİ DUYURU', val: getImportantCount(rss)} }}
+              .col-sm-4.
+                {{>b-notification-box {pin_name: 'aaa', opt: 'green', label: 'ŞİMDİKİ/DUYURU', val: curr_index + 1, val2: getEntriesLength(rss)} }}
+              .col-sm-4.
+                {{>b-notification-box {opt: 'yellow', icon: 'bell-o', val: isNew(rss.entries[curr_index].publishedDate, 3600), label: 'YENİ DUYURU'} }}
+    .row(style="padding: 40px")
+      .col-sm-12
         .row
-          .col-md-offset-1.col-md-10.col-md-offset-1
-            .col-sm-4.
-              {{>b-notification-box {opt: 'red', icon: 'warning', label: 'ÖNEMLİ DUYURU', val: getImportantCount(rss)} }}
-            .col-sm-4.
-              {{>b-notification-box {opt: 'green', label: 'ŞİMDİKİ/DUYURU', val: curr_index + 1, val2: getEntriesLength(rss)} }}
-            .col-sm-4.
-              {{>b-notification-box {opt: 'yellow', icon: 'bell-o', val: isNew(rss.entries[curr_index].publishedDate, 3600), label: 'YENİ DUYURU'} }}
-    .row
-      .col-md-offset-1.col-md-10.col-md-offset-1
-        .row
-          .col-md-offset-1.col-md-10.col-md-offset-1
+          .col-md-12
             | {{#with {entry: rss.entries[curr_index]} }}
             .rss-notification-box
-              div(class="panel panel-{{ entry.title.match(/^!/) ? 'red' : 'primary' }}")
+              div(class="panel panel-{{ entry.title.match(/^!/) || entry.title.match(/!$/) ? 'red' : 'primary' }}")
                 .panel-heading
                   .row
                     .col-xs-9.huge
@@ -40,13 +37,11 @@
                       .col-sm-12.huge.
                         {{ getSender(entry.content) }}
                                     
-                  
-                div
-                  .span.pull-left.rss-content(style= 'min-height: 13em')
+                //-
                     |  {{{ getAnnouncement(entry.content) }}} 
+                div
+                  .span.pull-left.rss-content(style= 'min-height: 13em').
+                    {{{ getAnnouncement(entry.content) }}}
                   .clearfix
-            | {{/with}}
-        
-            
-
-  | {{>connection-status {}}}
+            | {{/with}}  
+  | {{>connection-status {} }}

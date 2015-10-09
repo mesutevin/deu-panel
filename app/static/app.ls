@@ -47,6 +47,7 @@ app = new Ractive do
     is-new: is-new
     curr_index: 0
     entries_len: 0
+    last_feed_date: 0
 
 RactiveApp!set app
 
@@ -93,10 +94,15 @@ app.on 'complete', !->
 
   first-load = true
   get-rss = ->
-    $ .jGFeed 'http://eee.deu.edu.tr/moodle/rss/file.php/52/db39988d0b67063917a1d125c8d07278/mod_forum/4/rss.xml', (feeds) ->
+    burs-link = 'http://eee.deu.edu.tr/moodle/rss/file.php/3665/de9b60274ce93d65717b601a12fc1ebc/mod_forum/131/rss.xml'
+    link = 'http://eee.deu.edu.tr/moodle/rss/file.php/52/de9b60274ce93d65717b601a12fc1ebc/mod_forum/4/rss.xml'
+    $ .jGFeed link, (feeds) ->
       if not feeds
         console.log 'Rss feed is detected problem...'
         return false
+      date = new Date!
+      date = date.to-locale-string 'tr-TR'
+      app.set 'last_feed_date', date
       app.set 'rss', feeds
       app.set 'entries_len', feeds.entries.length
       if first-load
