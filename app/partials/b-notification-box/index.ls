@@ -4,12 +4,12 @@ require! {
     IoActor,
   }
 }
-  
+
 RactivePartial! .register ->
   $ '.b-notification-box' .each !->
-    elem = $ this 
+    elem = $ this
     actor = IoActor elem
 
-    actor.add-callback (msg)->
-      #console.log "slider changed: ", msg.val 
-      actor.set-ractive-var  \val, msg.val 
+    actor.add-callback (msg) ->
+      #console.log "slider changed: ", msg.val
+      actor.set-ractive-var  \val, msg.val

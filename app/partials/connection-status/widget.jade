@@ -3,6 +3,12 @@ include ../../templates/mixins.jade
 +partial('connection-status')
   |  <div  data-role="footer" data-tap-toggle="false" data-position="fixed" class="connection-status"
   |    style='background-color: {{ .connected ? "yellowgreen" : "lightgray" }}'>
-  |    <p>{{.connected? "connected..." : "connecting..." }}</p>
+  |    <div class="col-sm-4" style='background-color: {{ .connected ? "yellowgreen" : "lightgray" }}'>{{.connected? "Bağlantı Kuruldu." : "Bağlantı Kuruluyor..." }}</div>
+  |    <div class="col-sm-4" style='text-align: center; background-color: {{ .connected ? "yellowgreen" : "lightgray" }}'>Son-Güncelleme:  {{ last_feed_date }}</div>
+  |    <div class="col-sm-4" style='text-align: right; background-color: {{ .connected ? "yellowgreen" : "lightgray" }}'>Mesut Evin / Tuğrul Kukul</div>
   |  </div>
-
+  //-
+    .col-sm-4.
+      Son-Güncelleme: {{ last_feed_date }}
+    .col-sm-4.
+      Buraya başka yazı gelecek
