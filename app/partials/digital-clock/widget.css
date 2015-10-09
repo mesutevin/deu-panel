@@ -9,13 +9,13 @@
     width: 100%;
     margin: 0 auto;
     padding: 30px;
-    border: 1px solid #333;
+    border: 0.00001px solid #333;
     color: #fff;
 }
 
 #digital-date {
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-    font-size: 36px;
+    font-size: 24px;
     text-align: center;
     text-shadow: 0 0 5px #00c6ff;
 }
@@ -30,7 +30,7 @@ ul {
 
 ul li {
     display: inline;
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
     text-shadow: 0 0 5px #00c6ff;

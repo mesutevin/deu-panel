@@ -29,3 +29,7 @@ RactivePartial! .register ->
       hours = new Date!.get-hours!
       $ \#digital-hours .html((if hours < 10 then "0" else "") + hours)
     , 1000
+
+    actor.add-callback (msg) ->
+      if msg.val == 1
+        location.reload!
