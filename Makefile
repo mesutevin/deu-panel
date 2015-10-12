@@ -17,7 +17,7 @@ new-client:
 
 run-ide:
 	@#kate .kateproject 2>/dev/null &
-	atom . 
+	atom .
 run-brunch:
 	@brunch b && brunch w
 run-server:

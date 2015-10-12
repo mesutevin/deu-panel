@@ -1,31 +1,38 @@
-# DEU PANEL
+# DEU-PANEL
 
-> aktos-dcs kütüphanesi yükleme adımları:
-    
+> Install aktos-dcs :
+
     git clone https://github.com/mesutevin/aktos-dcs
     cd aktos-dcs
-    sudo install-on-linux.sh 
-   
-> deu-panel kütüphanesi yükleme adımları:
-     
+    sudo install-on-linux.sh
+
+> Install Deu-Panel (require aktos-dcs library) :
+
      git clone https://github.com/mesutevin/deu-panel
      sudo npm install -g LiveScript brunch pm2
      sudo apt-get install libzmq3-dev
+
+`aktos-dcs and deu-panel folders must be same working directory.`
+
+---
+
+`Compile and start the server`
      cd deu-panel
-     npm install
+     make run-brunch (run another terminal)
+     ln -s public server/
+     ./run-server
 
-> Not : aktos-dcs ve deu-panel klasörleri aynı alt dizinde bulunmalı.
+---
 
+`Supervisor can automatically restart a script every boot or on any crash. (root privilege is needed)`
 
-> server ın sürekli çalışması için: (root yetkisi gerektirir)     
-    
      apt-get install supervisor
      service supervisor restart
      nano /etc/supervisor/conf.d/deu-panel.conf
      supervisorctl reread
      supervisorctl update
 
-`conf dosyasının içeriği aşağıdaki gibi olmalıdır`
+`A simple supervisor configuration file (in /etc/supervisor/conf.d/):`
 
      [program:deu-panel]
      command=/usr/local/bin/lsc server.ls
@@ -34,5 +41,3 @@
      autorestart=true
      stderr_logfile=/var/log/deu-panel.err.log
      stdout_logfile=/var/log/deu-panel.out.log
-     
-
