@@ -17,8 +17,10 @@
 ---
 
 `Compile and start the server`
+
      cd deu-panel
      make run-brunch (run another terminal)
+     (After Compiled brunch (Example message brunch -> info: compiled ... files)
      ln -s public server/
      ./run-server
 
