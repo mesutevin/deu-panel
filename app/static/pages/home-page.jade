@@ -22,7 +22,7 @@
           .col-md-12
             | {{#with {entry: rss.entries[curr_index]} }}
             .rss-notification-box
-              div(class="panel panel-{{ entry.title.match(/^!/) || entry.title.match(/!$/) ? 'red' : 'primary' }}")
+              div(class="panel panel-{{ entry.title.match(/^!/) || entry.title.match(/!$/) ? 'red' : 'yellow' }}")
                 .panel-heading
                   .row
                     .col-xs-9.huge
