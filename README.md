@@ -21,8 +21,14 @@
      cd deu-panel
      make run-brunch (run another terminal)
      (After Compiled brunch (Example message brunch -> info: compiled ... files)
-     ln -s public server/
+     cd server
+     ln -s ../public .
      ./run-server
+
+'For ubuntu systems'
+     cd $(dirname $(which node))
+     mv node node.bak
+     ln -s $(which nodejs) node
 
 ---
 
