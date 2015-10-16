@@ -26,6 +26,7 @@
      ./run-server
 
 'For ubuntu systems'
+
      cd $(dirname $(which node))
      mv node node.bak
      ln -s $(which nodejs) node
