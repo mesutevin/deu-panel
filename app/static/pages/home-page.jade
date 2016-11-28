@@ -20,7 +20,7 @@
       .col-sm-12
         .row
           .col-md-12
-            | {{#with {entry: rss.entries[curr_index]} }}
+            | {{#with {entry: rss[curr_index]} }}
             .rss-notification-box
               div(class="panel panel-{{ entry.title.match(/^!/) || entry.title.match(/!$/) ? 'red' : 'yellow' }}")
                 .panel-heading

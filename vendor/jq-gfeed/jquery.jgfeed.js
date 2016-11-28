@@ -19,7 +19,8 @@
       // Make sure url to get is defined
       if(url == null) return false;
       // Build Google Feed API URL
-      var gurl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q="+url;
+      // var gurl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q="+url;
+      var gurl = "https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(url);
       if(num != null) gurl += "&num="+num;
       if(key != null) gurl += "&key="+key;
       // AJAX request the API

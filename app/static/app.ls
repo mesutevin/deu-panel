@@ -95,7 +95,7 @@ app.on 'complete', !->
   first-load = true
   get-rss = ->
     burs-link = 'http://eee.deu.edu.tr/moodle/rss/file.php/3665/de9b60274ce93d65717b601a12fc1ebc/mod_forum/131/rss.xml'
-    link = 'http://eee.deu.edu.tr/moodle/rss/file.php/52/de9b60274ce93d65717b601a12fc1ebc/mod_forum/4/rss.xml'
+    link = "https://eee.deu.edu.tr/moodle/rss/file.php/52/6e2fac2ba776fb382766559e03c7e380/mod_forum/4/rss.xml"
     $ .jGFeed link, (feeds) ->
       if not feeds
         console.log 'Rss feed is detected problem...'
@@ -104,7 +104,9 @@ app.on 'complete', !->
       date = date.to-locale-string 'tr-TR'
       app.set 'last_feed_date', date
       app.set 'rss', feeds
-      app.set 'entries_len', feeds.entries.length
+      app.set 'entries_len', feeds.length
+      #console.log "LENGTH:", feeds.length
+      #console.log "FEEDS: ", feeds
       if first-load
         set-timeout change-index, 5000
         first-load := false

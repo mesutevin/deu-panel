@@ -21,7 +21,7 @@ if (parse-int zmq.version.0) < 4
   process.exit 1
 
 server = new Hapi.Server!
-server.connection port: 5000
+server.connection port: 4000
 io = require 'socket.io' .listen server.listener
 sub-sock = zmq.socket 'sub'
 pub-sock = zmq.socket 'pub'
